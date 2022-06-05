@@ -1,6 +1,7 @@
 package br.com.technews.entity;
 
 import java.util.Date;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,8 +30,7 @@ public class News {
     public News() {
     }
 
-    public News(Long id, String title, String image, String content, Date createdAt) {
-        this.id = id;
+    public News(String title, String image, String content, Date createdAt) {
         this.title = title;
         this.image = image;
         this.content = content;
@@ -75,5 +75,30 @@ public class News {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+  
+      if (this == o)
+        return true;
+      if (!(o instanceof News))
+        return false;
+        News news = (News) o;
+      return Objects.equals(this.id, news.id) 
+        && Objects.equals(this.title, news.title)
+        && Objects.equals(this.content, news.content) 
+        && Objects.equals(this.createdAt, news.createdAt)
+        && Objects.equals(this.image, news.image);
+    }
+  
+    @Override
+    public int hashCode() {
+      return Objects.hash(this.id, this.title, this.content, this.createdAt, this.image);
+    }
+  
+    @Override
+    public String toString() {
+      return "Employee{" + "id=" + this.id + ", title='" + this.title + '\'' + ", content='" + this.content + '\'' + ", createdAt=" + this.createdAt + ", image='" + this.image + '\'' + '}';
     }
 }
