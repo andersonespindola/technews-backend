@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 public class News {
@@ -21,11 +22,12 @@ public class News {
     @Column(name = "image")
     private String image;
 
-    @Column(name = "content")
-    private String content;
-
     @Column(name = "created_at")
     private Date createdAt;
+
+    @Lob
+    @Column(name = "content")
+    private String content;
 
     public News() {
     }
